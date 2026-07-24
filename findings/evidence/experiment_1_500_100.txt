@@ -1,0 +1,248 @@
+
+(.venv) C:\Users\Admin\rag-assignment>python rag_query.py
+University PDF RAG
+Embedding model: nomic-embed-text
+Generation model: qwen3.5:2b
+Retrieved chunks per question: 3
+Type exit to stop.
+
+Question: How does the elevator detect and respond to an overweight condition?
+
+======================================================================
+RETRIEVED CHUNKS
+======================================================================
+
+Result 1
+Source: elevator_system.pdf
+Page: 9
+Chunk: 60
+Distance: 0.1815
+----------------------------------------------------------------------
+is compared against the predefined overweight threshold (CMPA #$66). This design
+ensures that weight evaluation is performed continuously and deterministically, allowing
+the elevator to react immediately to excessive load conditions. The decision is fu lly
+embedded in the control flow, meaning the elevator never proceeds to motion -related
+tasks unless the weight is confirmed safe.
+ Normal vs. Overweight Branching
+
+Result 2
+Source: elevator_system.pdf
+Page: 18
+Chunk: 110
+Distance: 0.2038
+----------------------------------------------------------------------
+Awada, Monzer, & Reda
+
+18
+
+6. Safety Overload Handling
+The overweight detection subsystem is a critical safety component of the elevator controller,
+designed to prevent motion when the cabin load exceeds a defined threshold. This feature is
+implemented using the HCS12’s ATD (Analog -to-Digital Converter) module , which
+continuously samples the potentiometer connected to channel 5. The potentiometer serves as
+
+Result 3
+Source: elevator_system.pdf
+Page: 20
+Chunk: 129
+Distance: 0.2102
+----------------------------------------------------------------------
+system first checks the ATD conversion status and reads the weight sensor value. If the
+threshold is exceeded, execution branches to the overweight routine, halting movement
+and enabling both visual and audible warnings. When weight conditions are safe, the
+system proceeds to evaluate pending service requests stored within the requests bitmask.
+If no requests exist, the elevator idles until new inputs arrive. If requests are present, the
+
+Generating answer with qwen3.5:2b...
+
+======================================================================
+GENERATED ANSWER
+======================================================================
+The elevator detects an overweight condition by using the HCS12's Analog-to-Digital Converter (ATD) module [Source 2] to continuously sample data from a potentiometer connected to channel 5, which serves as the weight sensor [Source 3]. When this value exceeds the predefined threshold of CMPA #$66 [Source 1], execution branches into an overweight routine that halts movement and triggers visual or audible warnings. If conditions are safe, the system proceeds to evaluate pending service requests before idling until new inputs arrive [Source 2][Source 3].
+
+Question: How does DMA reduce CPU involvement compared with programmed and interrupt-driven I/O?
+
+======================================================================
+RETRIEVED CHUNKS
+======================================================================
+
+Result 1
+Source: io_modules.pdf
+Page: 15
+Chunk: 200
+Distance: 0.2071
+----------------------------------------------------------------------
+Method Who moves data? CPU involvement Speed
+DMA DMA controller CPU sets up only Fastest
+
+=========================================================
+6. I/O CHANNELS AND I/O PROCESSORS
+=========================================================
+(Page 28–29)
+Chapter 8 - Input_Output
+DMA handles raw transfers, but complex systems need more.
+I/O Channel
+• A programmable DMA engine.
+• Executes I/O-specific instructions.
+• Used in mainframes.
+I/O Processor
+
+Result 2
+Source: io_modules.pdf
+Page: 14
+Chunk: 199
+Distance: 0.2189
+----------------------------------------------------------------------
+=========================================================
+5. DMA vs INTERRUPT I/O vs PROGRAMMED I/O
+=========================================================
+Method Who moves data? CPU involvement Speed
+Programmed CPU Constant polling Slowest
+Interrupt CPU Per transfer Medium
+
+Result 3
+Source: io_modules.pdf
+Page: 9
+Chunk: 182
+Distance: 0.2197
+----------------------------------------------------------------------
+3. I/O module sends interrupt to CPU.
+4. CPU stops current execution → saves context.
+5. CPU services interrupt:
+o Reads/Writes data
+o Updates buffers
+6. CPU restores context → continues previous work.
+Benefits:
+• CPU no longer wastes cycles waiting.
+• Good for moderate-speed devices (keyboard, serial, USB).
+Still not perfect:
+• CPU still moves data between I/O module and memory → expensive for large blocks.
+This leads to DMA, covered in Batch 3.
+
+Generating answer with qwen3.5:2b...
+
+======================================================================
+GENERATED ANSWER
+======================================================================
+DMA reduces CPU involvement by handling raw data transfers directly via the controller without requiring constant polling or context switching [Source 1, Source 2]. While **programmed I/O** involves slow, continuous CPU polling and **interrupt-driven I/O** requires the CPU to stop execution for each transfer (context saving/restoring) [Source 3], DMA allows the data movement to occur at a much faster speed with minimal or no direct CPU intervention during the actual transfer process.
+
+Question: What factors should be considered when selecting the resistor and capacitor values in the AM demodulator?
+
+======================================================================
+RETRIEVED CHUNKS
+======================================================================
+
+Result 1
+Source: am_receiver.pdf
+Page: 2
+Chunk: 7
+Distance: 0.2319
+----------------------------------------------------------------------
+1. In your own style, briefly explain the operation of the circuit shown in figure 3 and indicate
+the factors to consider when selecting the capacitor and resistor values.
+
+Result 2
+Source: am_receiver.pdf
+Page: 2
+Chunk: 6
+Distance: 0.2860
+----------------------------------------------------------------------
+discussed in detail in your communication courses. However, for AM signal s, a simpler method
+involving amplitude detection may be used. To do so, you will use the demodulator circuit shown
+in figure 3.
+
+Figure 3 - Circuit diagram of a passive demodulator
+I. Circuit Parameters
+Germanium diode model: 1N34A
+𝑅𝑑𝑒𝑚 = __________
+𝐶𝑑𝑒𝑚 = __________
+II. Background and Theory
+1. In your own style, briefly explain the operation of the circuit shown in figure 3 and indicate
+
+Result 3
+Source: am_receiver.pdf
+Page: 2
+Chunk: 5
+Distance: 0.3050
+----------------------------------------------------------------------
+ELE 402 – Electronics Lab  Spring 2025
+© Chadi T. Chamoun  Page 2 of 9
+B. Demodulator
+
+Figure 2 - High-level system diagram of an AM demodulator
+In general, to down convert a signal to its baseband frequency, the signal must be multiplied by a
+carrier wave then sen t through a low pass filter as shown in figure 2. This approach is further
+discussed in detail in your communication courses. However, for AM signal s, a simpler method
+
+Generating answer with qwen3.5:2b...
+
+======================================================================
+GENERATED ANSWER
+======================================================================
+Based on the provided context [Source 1], there is insufficient information to specify specific numerical or design criteria for selecting resistor and capacitor values, as the document only outlines that these factors must be considered when designing the circuit shown in Figure 3 without providing a detailed explanation of how they are determined.
+
+Question: What motor model was used to move the elevator?
+
+======================================================================
+RETRIEVED CHUNKS
+======================================================================
+
+Result 1
+Source: elevator_system.pdf
+Page: 11
+Chunk: 70
+Distance: 0.3154
+----------------------------------------------------------------------
+dispatches control to the appropriate directional decision block (at_floor0, at_floor1, or
+at_floor2). This routine forms the main execution path for regular elevator motion and
+request servicing.
+
+Moving Message
+The moving_message routine provides dynamic LCD feedback during elevator travel.
+Upon entering this routine, the LCD is first cleared using a standard command instruction,
+after which the string "MOVING" is printed character -by-character using the SPI -driven
+
+Result 2
+Source: elevator_system.pdf
+Page: 4
+Chunk: 44
+Distance: 0.3168
+----------------------------------------------------------------------
+Awada, Monzer, & Reda
+
+4
+
+Introduction
+ This report presents the design and implementation of a three -stage elevator
+system built on the HCS12 (MC9S12DT256) microcontroller. The project aims to
+demonstrate advanced embedded-systems techniques, including interrupt -driven input
+handling, real-time state management, digital/analog interfacing, motion sequencing, and
+user-interface signaling.
+The system supports:
+• Internal and external floor selection
+
+Result 3
+Source: elevator_system.pdf
+Page: 26
+Chunk: 158
+Distance: 0.3178
+----------------------------------------------------------------------
+Awada, Monzer, & Reda
+
+26
+
+Conclusion
+ The development of the three-stage elevator system successfully demonstrates the
+integration of hardware interfacing, real -time control, and modular software design on
+the HCS12 microcontroller platform. Through the coordinated use of interrupts, analog -
+to-digital conversion, PWM signaling, and SPI -driven LCD output, the system achieves
+reliable floor selection, precise motion control, and intuitive user feedback. The
+
+Generating answer with qwen3.5:2b...
+
+======================================================================
+GENERATED ANSWER
+======================================================================
+The provided context does not contain information regarding the specific motor model used in the three-stage elevator system described by Awada et al. [Source 2]. While it mentions that "motion sequencing" and "PWM signaling" are utilized for precise motion control, these terms refer to software techniques rather than hardware components like a specific motor brand or type (e.g., stepper vs. servo).
+
+I do not have enough information in the retrieved documents.

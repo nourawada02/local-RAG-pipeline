@@ -1,0 +1,390 @@
+
+(.venv) C:\Users\Admin\rag-assignment>ollama list
+NAME                        ID              SIZE      MODIFIED
+mxbai-embed-large:latest    468836162de7    669 MB    18 minutes ago
+nomic-embed-text:latest     0a109f422b47    274 MB    7 hours ago
+qwen3.5:2b                  324d162be6ca    2.7 GB    3 days ago
+qwen3.5:2b-q4_K_M           124a03c34777    1.9 GB    4 days ago
+
+(.venv) C:\Users\Admin\rag-assignment>notepad rag_query.py
+
+(.venv) C:\Users\Admin\rag-assignment>python build_index.py
+Reading: am_receiver.pdf
+  Extracted 9 readable pages out of 9
+Reading: elevator_system.pdf
+  Extracted 26 readable pages out of 26
+Reading: io_modules.pdf
+  Extracted 19 readable pages out of 19
+
+Readable pages: 54
+Created chunks: 108
+Chunk size: 1000 characters
+Chunk overlap: 200 characters
+
+Removing old database: chroma_db
+
+Creating embeddings with: mxbai-embed-large
+
+Indexing completed successfully.
+Vector database saved to: C:\Users\Admin\rag-assignment\chroma_db
+
+(.venv) C:\Users\Admin\rag-assignment>python rag_query.py
+University PDF RAG
+Embedding model: mxbai-embed-large
+Generation model: qwen3.5:2b
+Retrieved chunks per question: 3
+Type exit to stop.
+
+Question: How does the elevator detect and respond to an overweight condition?
+
+======================================================================
+RETRIEVED CHUNKS
+======================================================================
+
+Result 1
+Source: elevator_system.pdf
+Page: 24
+Chunk: 77
+Distance: 0.1822
+----------------------------------------------------------------------
+Awada, Monzer, & Reda
+
+24
+
+Overweight Behavior
+The overweight protection mechanism was evaluated using a range of potentiometer
+values to simulate varying load conditions. When the ATD conversion result exceeded the
+predefined threshold, the system immediately halted all elevator movement and entered
+a controlled alarm state. In this state, the buzzer remained continuously active  and the
+red LED blinked persistently, while the main loop prevented any transition into motion
+routines. Once the simulated weight returned to an acceptable level, the system
+disengaged the alarm state, resumed normal LED behavior, and re -enabled request
+processing. These tests confirmed that the overweight logic correctly integrated ATD
+readings, threshold comparison, and state isolation, ensuring that safety constraints
+override all other system functions.
+
+Result 2
+Source: elevator_system.pdf
+Page: 18
+Chunk: 58
+Distance: 0.2193
+----------------------------------------------------------------------
+During each iteration of the main control loop, the program waits for the ATD conversion
+complete flag and reads the latest sample from ATD0DR0L. This value is then compared against
+a predefined safety threshold (CMPA #$66), which represents the maximum allowable load. If
+the measured weight falls within normal operating limits, the system proceeds to the standard
+elevator logic. However, if the reading exceeds the threshold, the program immediately
+branches to the dedicated overweight routine. This safety handler activates the buzzer using
+PWM (buzzer_on), triggers the red LED for visual alerting ( red), and performs a controlled
+blink cycle to signal a persistent hazard condition.
+While in the overweight state, elevator motion is completely locked out: none of the movement
+routines (FROMxTOy) can execute, preventing unsafe operation under excessive load. The
+system remains in this mode until subsequent ATD readings fall below the threshold, at which
+
+Result 3
+Source: elevator_system.pdf
+Page: 18
+Chunk: 57
+Distance: 0.2250
+----------------------------------------------------------------------
+Awada, Monzer, & Reda
+
+18
+
+6. Safety Overload Handling
+The overweight detection subsystem is a critical safety component of the elevator controller,
+designed to prevent motion when the cabin load exceeds a defined threshold. This feature is
+implemented using the HCS12’s ATD (Analog -to-Digital Converter) module , which
+continuously samples the potentiometer connected to channel 5. The potentiometer serves as
+the electronic weight sensor, providing a 10 -bit digital measure of the applied load.
+Initialization of the ATD converter ( ATD0CTL2, ATD0CTL3, ATD0CTL4, and ATD0CTL5)
+configures the module for continuous, right -justified conversions at full resolution, ensuring
+reliable and noise-free analog sampling throughout system operation.
+During each iteration of the main control loop, the program waits for the ATD conversion
+complete flag and reads the latest sample from ATD0DR0L. This value is then compared against
+
+Generating answer with qwen3.5:2b...
+
+======================================================================
+GENERATED ANSWER
+======================================================================
+The elevator detects an overweight condition by continuously sampling load via potentiometer channel 5 using the HCS12's ATD module [Source 3]. Upon receiving data, it compares the measured weight against a predefined safety threshold (CMPA #$66) representing maximum allowable load [Source 2]. If the reading exceeds this limit, the system immediately halts all elevator movement and enters an alarm state where the buzzer activates continuously and the red LED blinks persistently to signal the hazard. This mode remains active until subsequent ATD readings fall below the threshold, at which point normal operation resumes [Sources 1 & 2].
+
+Question: How does DMA reduce CPU involvement compared with programmed and interrupt-driven I/O?
+
+======================================================================
+RETRIEVED CHUNKS
+======================================================================
+
+Result 1
+Source: io_modules.pdf
+Page: 14
+Chunk: 103
+Distance: 0.1911
+----------------------------------------------------------------------
+=========================================================
+5. DMA vs INTERRUPT I/O vs PROGRAMMED I/O
+=========================================================
+Method Who moves data? CPU involvement Speed
+Programmed CPU Constant polling Slowest
+Interrupt CPU Per transfer Medium
+
+Result 2
+Source: io_modules.pdf
+Page: 13
+Chunk: 100
+Distance: 0.1945
+----------------------------------------------------------------------
+=========================================================
+(Page 22)
+Chapter 8 - Input_Output
+Interrupt-driven I/O still requires CPU to move every byte between I/O module and memory.
+This is insane for large transfers (e.g., disk blocks, network packets).
+Example:
+Reading 4 KB from disk = CPU handles 4096 byte transfers.
+Solution:
+CPU delegates the job to DMA controller.
+
+=========================================================
+2. DMA CONCEPT
+=========================================================
+DMA = Direct Memory Access
+A DMA module transfers blocks of data directly between memory and I/O devices without CPU
+intervention.
+CPU only does:
+1. Set starting memory address
+2. Set word count
+3. Set direction (read/write)
+4. Start DMA
+Then DMA takes over.
+
+=========================================================
+3. DMA OPERATION MODES
+=========================================================
+(Page 24)
+Chapter 8 - Input_Output
+
+Result 3
+Source: io_modules.pdf
+Page: 15
+Chunk: 104
+Distance: 0.2292
+----------------------------------------------------------------------
+Method Who moves data? CPU involvement Speed
+DMA DMA controller CPU sets up only Fastest
+
+=========================================================
+6. I/O CHANNELS AND I/O PROCESSORS
+=========================================================
+(Page 28–29)
+Chapter 8 - Input_Output
+DMA handles raw transfers, but complex systems need more.
+I/O Channel
+• A programmable DMA engine.
+• Executes I/O-specific instructions.
+• Used in mainframes.
+I/O Processor
+• A separate processor dedicated entirely to I/O.
+• Can manage multiple DMA controllers.
+• Offloads all I/O burdens from CPU.
+Modern analogy:
+• NVMe SSD controllers
+• NIC offload engines
+• GPU copy engines
+
+END OF BATCH 3
+Now we finish with the last batch:
+I/O Mapping, Buses, PCI, PCIe, FireWire, USB.
+
+---------------------------------------------------------
+     CHAPTER 8 — BATCH 4
+I/O MAPPING • BUS ARCHITECTURE • PCI • PCI EXPRESS • USB
+
+Generating answer with qwen3.5:2b...
+
+======================================================================
+GENERATED ANSWER
+======================================================================
+Based on the provided context, DMA reduces CPU involvement in three key ways regarding speed and workload distribution [Source 1]: it is significantly faster than both **Programmed I/O** (which involves constant polling) and **Interrupt-driven I/O** (where data transfer still requires every byte to be moved by the CPU between memory and devices).
+
+Specifically, DMA allows the controller to handle raw transfers directly without CPU intervention [Source 2], meaning:
+*   The CPU only needs to perform a few setup tasks such as setting starting addresses, word counts, directions, or initiating the transfer.
+*   Once started, the DMA takes over and moves data blocks (e.g., disk blocks) between memory and I/O devices directly without requiring further CPU intervention for each byte [Source 2].
+
+Question: What factors should be considered when selecting the resistor and capacitor values in the AM demodulator?
+
+======================================================================
+RETRIEVED CHUNKS
+======================================================================
+
+Result 1
+Source: am_receiver.pdf
+Page: 2
+Chunk: 3
+Distance: 0.2267
+----------------------------------------------------------------------
+ELE 402 – Electronics Lab  Spring 2025
+© Chadi T. Chamoun  Page 2 of 9
+B. Demodulator
+
+Figure 2 - High-level system diagram of an AM demodulator
+In general, to down convert a signal to its baseband frequency, the signal must be multiplied by a
+carrier wave then sen t through a low pass filter as shown in figure 2. This approach is further
+discussed in detail in your communication courses. However, for AM signal s, a simpler method
+involving amplitude detection may be used. To do so, you will use the demodulator circuit shown
+in figure 3.
+
+Figure 3 - Circuit diagram of a passive demodulator
+I. Circuit Parameters
+Germanium diode model: 1N34A
+𝑅𝑑𝑒𝑚 = __________
+𝐶𝑑𝑒𝑚 = __________
+II. Background and Theory
+1. In your own style, briefly explain the operation of the circuit shown in figure 3 and indicate
+the factors to consider when selecting the capacitor and resistor values.
+
+Result 2
+Source: am_receiver.pdf
+Page: 3
+Chunk: 4
+Distance: 0.2343
+----------------------------------------------------------------------
+ELE 402 – Electronics Lab  Spring 2025
+© Chadi T. Chamoun  Page 3 of 9
+2. Select appropriate values for the capacitor 𝐶𝑑𝑒𝑚 and the resistor 𝑅𝑑𝑒𝑚, knowing that the wanted
+baseband signal is in the 0-20 kHz range, and the unwanted carrier signal is in the 200 kHz –
+1.2 MHz range.
+Hint: The cutoff frequency of the passive RC low -pass filter should be larger than the
+bandwidth of the baseband signal and smaller than the frequency of the carrier.
+3. What are the constraints on the DC point at the input of the demodulator for correct operation?
+III. SPICE Simulation
+Simulate your design to ensure correct operation using an appropriately modulation input signal.
+The signal can be generated using a multiplier which multiplies two sine waves. Refer to the SPICE
+tutorial on Blackboard for more information. Ensure that your modulat ing signal is correctly
+modulated so that your demodulator functions properly.
+
+Result 3
+Source: am_receiver.pdf
+Page: 3
+Chunk: 5
+Distance: 0.2642
+----------------------------------------------------------------------
+tutorial on Blackboard for more information. Ensure that your modulat ing signal is correctly
+modulated so that your demodulator functions properly.
+1. Plot the input and output signals confirming the demodulation of your signal.
+2. Plot the gain response of the demodulator versus the baseba nd signal frequency, while using
+the carrier frequency assigned to you by your instructor.
+IV. Hardware
+Create the circuit shown in figure 3. Using the function generator, set the carrier signal to the
+frequency band assigned to you by your instructor. Modulate the signal using the AM modulation
+function of the generator. The audio signal will then be “carried onto” the carrier frequency through
+AM modulation.
+Keep in mind that the human ear is capa ble of easily hearing signals between ~200 Hz and ~10
+kHz.
+1. Connect the input of the modulator to the function generator and plot the in put and output
+signals confirming the demodulation of your signal.
+
+Generating answer with qwen3.5:2b...
+
+======================================================================
+GENERATED ANSWER
+======================================================================
+Based on the provided context, specifically **Source 2**, the selection of $R_{dem}$ (resistor) and $C_{dem}$ (capacitor) for an active-passive RC low-pass filter in this AM demodulator circuit must satisfy specific frequency constraints to isolate the baseband signal from the carrier.
+
+The primary factors are:
+1.  **Baseband Bandwidth:** The cutoff frequency of the passive filter should be larger than the bandwidth of the desired audio signal (0–20 kHz). [Source 3]
+2.  **Carrier Frequency Separation:** The cutoff frequency must remain smaller than the lowest frequency component of the unwanted carrier signal (200 kHz) to prevent it from passing through and interfering with the baseband output. [Source 1, Source 2]
+
+In summary, $f_c$ should be chosen such that:
+$$ \text{Baseband Bandwidth} < f_c < \frac{\text{Carrier Frequency Range}}{200\,\text{kHz}} $$
+
+Question: What motor model was used to move the elevator?
+
+======================================================================
+RETRIEVED CHUNKS
+======================================================================
+
+Result 1
+Source: elevator_system.pdf
+Page: 4
+Chunk: 24
+Distance: 0.3366
+----------------------------------------------------------------------
+Awada, Monzer, & Reda
+
+4
+
+Introduction
+ This report presents the design and implementation of a three -stage elevator
+system built on the HCS12 (MC9S12DT256) microcontroller. The project aims to
+demonstrate advanced embedded-systems techniques, including interrupt -driven input
+handling, real-time state management, digital/analog interfacing, motion sequencing, and
+user-interface signaling.
+The system supports:
+• Internal and external floor selection
+• Upward and downward motion sequencing
+• Priority-based multi-request scheduling
+• LCD messaging
+• LED-based direction indication
+• Audible arrival alerts
+• Overweight detection using an analog potentiometer
+The final product behaves as a realistic miniature elevator controller, with smooth
+transitions, accurate request handling, and full user feedback.
+System Objectives:
+The primary objectives are:
+1. Implement a three-floor elevator controller with correct vertical navigation.
+
+Result 2
+Source: elevator_system.pdf
+Page: 26
+Chunk: 80
+Distance: 0.3394
+----------------------------------------------------------------------
+Awada, Monzer, & Reda
+
+26
+
+Conclusion
+ The development of the three-stage elevator system successfully demonstrates the
+integration of hardware interfacing, real -time control, and modular software design on
+the HCS12 microcontroller platform. Through the coordinated use of interrupts, analog -
+to-digital conversion, PWM signaling, and SPI -driven LCD output, the system achieves
+reliable floor selection, precise motion control, and intuitive user feedback. The
+implementation meets all functional requirements specified for the project, including
+prioritized request scheduling, accurate direction indication, stable display messaging,
+and robust overweight protection.
+Extensive testing confirmed that the elevator responds consistently under a variety of
+input scenarios, including simultaneous button presses and rapid request sequences.
+Issues encountered during developments such as LED state conflicts, LCD timing
+
+Result 3
+Source: elevator_system.pdf
+Page: 23
+Chunk: 75
+Distance: 0.3588
+----------------------------------------------------------------------
+prioritization rules were applied exactly as intended. The system demonstrated stable
+behavior even under rapid, repeated button activations.
+
+Correct Upward/Downward Motion
+Motion routines (FROMxTOy ) were examined for every valid floor transition to verify
+accurate direction handling and state progression. Each routine correctly updated the
+direction flag, performed the appropriate LED activation, invoked the “MOVING” and
+directional LCD messages, executed the required number of blink cycles, and ultimately
+updated the current floor value. The control flow between states remained deterministic
+across all transitions, and the masking of served requests after arrival ensured that the
+elevator never re -entered a completed floor state. Testing validated that ascending
+requests were always processed in ascending order and descending requests in
+descending order, fully matching the scheduling logic implemented in the decision blocks
+(at_floor0, at_floor1, at_floor2).
+
+Generating answer with qwen3.5:2b...
+
+======================================================================
+GENERATED ANSWER
+======================================================================
+Based on the provided context, there is no mention of a specific **motor** model being used in this project [Source 1]. The document describes an embedded-systems design using an HCS12 microcontroller for control logic and interfacing (including analog-to-digital conversion), but it does not specify any physical motor hardware or its manufacturer.
+
+I do not have enough information in the retrieved documents to answer what specific motor model was used.
+
+Question:
