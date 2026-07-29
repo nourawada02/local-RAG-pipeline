@@ -1,0 +1,82 @@
+{
+  "counts": {
+    "total": 30,
+    "answerable": 26,
+    "unanswerable": 4
+  },
+  "retrieval": {
+    "hit@3": 0.8076923076923077,
+    "recall@3": 0.75,
+    "mrr@3": 0.6858974358974359,
+    "hit@5": 0.8846153846153846,
+    "recall@5": 0.8269230769230769,
+    "mrr@5": 0.7051282051282051
+  },
+  "answer": {
+    "exact_match": 0.0,
+    "token_f1": 0.31077530179615975,
+    "required_fact_recall": 0.6997863247863247
+  },
+  "citations": {
+    "precision": 0.6858974358974359,
+    "recall": 0.7884615384615384,
+    "f1": 0.7102564102564102
+  },
+  "abstention": {
+    "accuracy_all_questions": 0.8666666666666667,
+    "unanswerable_accuracy": 0.75
+  },
+  "latency": {
+    "retrieval": {
+      "median_ms": 3202.35,
+      "p95_ms": 4229.298949999999
+    },
+    "generation": {
+      "median_ms": 34865.066000000006,
+      "p95_ms": 67127.63709999998
+    },
+    "total": {
+      "median_ms": 39557.863,
+      "p95_ms": 71655.72279999997
+    }
+  },
+  "human_optional": {
+    "correctness_mean_0_to_2": null,
+    "faithfulness_mean_0_to_2": null
+  },
+  "by_question_type": {
+    "direct": {
+      "fact_recall": 0.8424242424242423,
+      "abstention_accuracy": 0.9090909090909091,
+      "hit@5": 0.9090909090909091
+    },
+    "multi_chunk": {
+      "fact_recall": 0.50625,
+      "abstention_accuracy": 0.75,
+      "hit@5": 1.0
+    },
+    "ocr_direct": {
+      "fact_recall": 0.71875,
+      "abstention_accuracy": 0.75,
+      "hit@5": 0.75
+    },
+    "ocr_multi_chunk": {
+      "fact_recall": 0.1111111111111111,
+      "abstention_accuracy": 1.0,
+      "hit@5": 0.0
+    },
+    "ocr_paraphrase": {
+      "fact_recall": 1.0,
+      "abstention_accuracy": 1.0,
+      "hit@5": 1.0
+    },
+    "paraphrase": {
+      "fact_recall": 0.5833333333333333,
+      "abstention_accuracy": 1.0,
+      "hit@5": 1.0
+    },
+    "unanswerable": {
+      "abstention_accuracy": 0.75
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "experiment_id": "small_child_parent_context_decomposed_balanced_hybrid_top_3",
+  "independent_variable": "post-retrieval generation context",
+  "control_experiment": "small_chunk_decomposed_balanced_hybrid_top_3",
+  "hypothesis": "500/100 children preserve retrieval precision while matched 1000/200 parents restore enough surrounding context for complete answers",
+  "child_index": "rag-evaluation-starter\\results\\chunking_sweep\\small_500_100_chroma_db",
+  "parent_index": "rag-evaluation-starter\\results\\chunking_sweep\\control_1000_200_chroma_db",
+  "collection_name": "university_documents",
+  "child_chunk_count": 909,
+  "parent_chunk_count": 469,
+  "child_chunk_size_characters": 500,
+  "child_chunk_overlap_characters": 100,
+  "parent_chunk_size_characters": 1000,
+  "parent_chunk_overlap_characters": 200,
+  "parent_mapping": {
+    "constraint": "same source and page as selected child",
+    "ranking": "maximum multiset token coverage of child",
+    "minimum_child_token_coverage": 0.5,
+    "uses_gold_labels_or_evidence": false
+  },
+  "embedding_model": "mxbai-embed-large",
+  "vector_database": "Chroma",
+  "distance": "cosine",
+  "retrieval": {
+    "dense": {
+      "method": "Chroma cosine similarity over 500/100 children",
+      "candidate_k": 20
+    },
+    "lexical": {
+      "method": "BM25 over 500/100 children",
+      "candidate_k": 20,
+      "k1": 1.5,
+      "b": 0.75
+    },
+    "fusion": {
+      "candidate_scoring": "equal-weight Reciprocal Rank Fusion",
+      "rrf_constant": 60,
+      "decomposition_trigger": "explicit both X and Y syntax",
+      "page_deduplication": true
+    },
+    "final_top_k_pages": 3
+  },
+  "generation_context": "matched frozen 1000/200 parent chunk for each selected child",
+  "generation_model": "qwen3.5:2b",
+  "temperature": 0.2,
+  "num_ctx": 4096,
+  "num_predict": 256,
+  "reasoning": false,
+  "ocr": {
+    "enabled": true,
+    "strategy": "reuse sweep indexes built from the shared native extraction and selective Tesseract page cache"
+  },
+  "predictions_file": "rag-evaluation-starter\\results\\parent_context_decomposed_hybrid_predictions.jsonl"
+}

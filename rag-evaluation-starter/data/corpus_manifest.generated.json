@@ -1,0 +1,27 @@
+{
+  "dataset_name": "NIST AI Risk and Secure Development RAG Evaluation Corpus",
+  "version": "1.0.0",
+  "documents": [
+    {
+      "doc_id": "nist_ai_rmf_1_0",
+      "filename": "nist_ai_rmf_1_0.pdf",
+      "pages": 48,
+      "sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+      "extraction_expected": "native"
+    },
+    {
+      "doc_id": "nist_ai_600_1",
+      "filename": "nist_ai_600_1_genai_profile.pdf",
+      "pages": 64,
+      "sha256": "6e73620ab6b64e90ef2c04bf0e0d6246185a2f4b1b13cab0df494496cff89b6a",
+      "extraction_expected": "native"
+    },
+    {
+      "doc_id": "nist_sp_800_218a_scan",
+      "filename": "nist_sp_800_218a_scanned.pdf",
+      "pages": 30,
+      "sha256": "3d9bab3a5849d3d67c78405bb29c4850d96b68714eec1523c5994a10b68bac21",
+      "extraction_expected": "ocr"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+experiment_id,chunk_size_tokens,chunk_overlap_tokens,embedding_model,retriever,candidate_k,reranker,context_k,hit_at_5,recall_at_5,mrr_at_5,required_fact_recall,citation_f1,unanswerable_accuracy,retrieval_p95_ms,total_p95_ms,notes
+baseline,,,,dense,3,,3,,,,,,,,,

@@ -1,0 +1,29 @@
+{
+  "strategy": "native text with selective OCR fallback",
+  "ocr_engine": "Tesseract",
+  "ocr_dpi": 300,
+  "ocr_language": "eng",
+  "documents": {
+    "nist_ai_600_1_genai_profile.pdf": {
+      "total_pages": 64,
+      "native_pages": 64,
+      "ocr_attempted_pages": 0,
+      "ocr_successful_pages": 0
+    },
+    "nist_ai_rmf_1_0.pdf": {
+      "total_pages": 48,
+      "native_pages": 48,
+      "ocr_attempted_pages": 0,
+      "ocr_successful_pages": 0
+    },
+    "nist_sp_800_218a_scanned.pdf": {
+      "total_pages": 30,
+      "native_pages": 0,
+      "ocr_attempted_pages": 30,
+      "ocr_successful_pages": 30
+    }
+  },
+  "total_loaded_pages": 142,
+  "total_native_pages": 112,
+  "total_ocr_pages": 30
+}

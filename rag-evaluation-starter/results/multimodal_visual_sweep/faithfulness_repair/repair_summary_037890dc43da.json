@@ -1,0 +1,381 @@
+{
+  "experiment_id": "multimodal_faithfulness_repair",
+  "description_fingerprint": "037890dc43da2a243fe3c580e3cdcebe09fe3e97be0e9545144dbd16bc48b0f4",
+  "repaired_figures": [
+    3,
+    5
+  ],
+  "control_reused_from": "rag-evaluation-starter\\results\\multimodal_visual_sweep\\multimodal_paired_generation_state.jsonl",
+  "control": {
+    "counts": {
+      "total": 12,
+      "answerable": 10,
+      "unanswerable": 2
+    },
+    "retrieval": {
+      "hit@3": 0.8,
+      "recall@3": 0.8,
+      "mrr@3": 0.7333333333333333
+    },
+    "answer": {
+      "exact_match": 0.0,
+      "token_f1": 0.09161960436348453,
+      "required_fact_recall": 0.125
+    },
+    "citations": {
+      "precision": 0.2,
+      "recall": 0.2,
+      "f1": 0.2
+    },
+    "abstention": {
+      "accuracy_all_questions": 0.4166666666666667,
+      "unanswerable_accuracy": 1.0
+    },
+    "latency": {
+      "retrieval": {
+        "median_ms": 2816.239,
+        "p95_ms": 3396.5776499999997
+      },
+      "generation": {
+        "median_ms": 12500.496,
+        "p95_ms": 25562.569749999995
+      },
+      "total": {
+        "median_ms": 15250.0605,
+        "p95_ms": 28550.349299999994
+      }
+    },
+    "human_optional": {
+      "correctness_mean_0_to_2": null,
+      "faithfulness_mean_0_to_2": null
+    },
+    "by_question_type": {
+      "visual_direct": {
+        "fact_recall": 0.0,
+        "abstention_accuracy": 0.0
+      },
+      "visual_relationship": {
+        "fact_recall": 0.17857142857142858,
+        "abstention_accuracy": 0.42857142857142855
+      },
+      "visual_unanswerable": {
+        "abstention_accuracy": 1.0
+      }
+    }
+  },
+  "challenger": {
+    "counts": {
+      "total": 12,
+      "answerable": 10,
+      "unanswerable": 2
+    },
+    "retrieval": {
+      "hit@3": 1.0,
+      "recall@3": 1.0,
+      "mrr@3": 1.0
+    },
+    "answer": {
+      "exact_match": 0.0,
+      "token_f1": 0.5826513709468741,
+      "required_fact_recall": 0.86
+    },
+    "citations": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "abstention": {
+      "accuracy_all_questions": 1.0,
+      "unanswerable_accuracy": 1.0
+    },
+    "latency": {
+      "retrieval": {
+        "median_ms": 2796.1645,
+        "p95_ms": 3460.337499999999
+      },
+      "generation": {
+        "median_ms": 20454.8495,
+        "p95_ms": 28826.915499999996
+      },
+      "total": {
+        "median_ms": 23119.999,
+        "p95_ms": 31767.493449999998
+      }
+    },
+    "human_optional": {
+      "correctness_mean_0_to_2": null,
+      "faithfulness_mean_0_to_2": null
+    },
+    "by_question_type": {
+      "visual_direct": {
+        "fact_recall": 1.0,
+        "abstention_accuracy": 1.0
+      },
+      "visual_relationship": {
+        "fact_recall": 0.7999999999999999,
+        "abstention_accuracy": 1.0
+      },
+      "visual_unanswerable": {
+        "abstention_accuracy": 1.0
+      }
+    }
+  },
+  "question_level": [
+    {
+      "id": "v001",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v002",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v003",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 0.6,
+      "control_answerable": true,
+      "challenger_answerable": true,
+      "control_citation_correct": true,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v004",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v005",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v006",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.25,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": true,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v007",
+      "answerable": true,
+      "result": "same",
+      "control_fact_recall": 1.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": true,
+      "challenger_answerable": true,
+      "control_citation_correct": true,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v008",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v009",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v010",
+      "answerable": true,
+      "result": "same",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 0.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v011",
+      "answerable": false,
+      "result": "same",
+      "control_fact_recall": null,
+      "challenger_fact_recall": null,
+      "control_answerable": false,
+      "challenger_answerable": false,
+      "control_citation_correct": true,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v012",
+      "answerable": false,
+      "result": "same",
+      "control_fact_recall": null,
+      "challenger_fact_recall": null,
+      "control_answerable": false,
+      "challenger_answerable": false,
+      "control_citation_correct": true,
+      "challenger_citation_correct": true
+    }
+  ],
+  "relationship_gates": [
+    {
+      "id": "v001",
+      "passed": true,
+      "gate": "no additional relationship gate"
+    },
+    {
+      "id": "v002",
+      "passed": true,
+      "gate": "no additional relationship gate"
+    },
+    {
+      "id": "v003",
+      "passed": false,
+      "gate": "center + four dimensions without a five-dimension claim"
+    },
+    {
+      "id": "v004",
+      "passed": true,
+      "gate": "no additional relationship gate"
+    },
+    {
+      "id": "v005",
+      "passed": true,
+      "gate": "no additional relationship gate"
+    },
+    {
+      "id": "v006",
+      "passed": true,
+      "gate": "validation phrases mapped to the correct lifecycle stages"
+    },
+    {
+      "id": "v007",
+      "passed": true,
+      "gate": "no additional relationship gate"
+    },
+    {
+      "id": "v008",
+      "passed": true,
+      "gate": "no additional relationship gate"
+    },
+    {
+      "id": "v009",
+      "passed": true,
+      "gate": "GOVERN central; MAP, MEASURE, and MANAGE surrounding"
+    },
+    {
+      "id": "v010",
+      "passed": false,
+      "gate": "MAP left; MEASURE right; MANAGE below"
+    },
+    {
+      "id": "v011",
+      "passed": true,
+      "gate": "no additional relationship gate"
+    },
+    {
+      "id": "v012",
+      "passed": true,
+      "gate": "no additional relationship gate"
+    }
+  ],
+  "citation_gates": [
+    {
+      "id": "v001",
+      "passed": true
+    },
+    {
+      "id": "v002",
+      "passed": true
+    },
+    {
+      "id": "v003",
+      "passed": true
+    },
+    {
+      "id": "v004",
+      "passed": true
+    },
+    {
+      "id": "v005",
+      "passed": true
+    },
+    {
+      "id": "v006",
+      "passed": true
+    },
+    {
+      "id": "v007",
+      "passed": true
+    },
+    {
+      "id": "v008",
+      "passed": true
+    },
+    {
+      "id": "v009",
+      "passed": true
+    },
+    {
+      "id": "v010",
+      "passed": true
+    },
+    {
+      "id": "v011",
+      "passed": true
+    },
+    {
+      "id": "v012",
+      "passed": true
+    }
+  ],
+  "all_relationships_passed": false,
+  "all_citations_passed": true,
+  "correct_visual_anchors": 10,
+  "answerable_questions": 10,
+  "improvements": 8,
+  "regressions": 0,
+  "answerability_regressions": 0,
+  "generation_calls": 12,
+  "mean_generation_ms": 19568.940583333333,
+  "automated_gate_passed": false,
+  "human_audit_required": true,
+  "decision": "DO NOT PROMOTE; REPAIR GATE FAILED"
+}

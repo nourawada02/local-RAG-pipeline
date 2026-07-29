@@ -1,0 +1,141 @@
+{
+  "experiment": "Part 2 adaptive evidence-coverage routing screening",
+  "independent_variable": "query routing and coverage-aware allocation of the same three-page context budget",
+  "controls": {
+    "ocr": "frozen selective-OCR index",
+    "chunk_size_characters": 1000,
+    "chunk_overlap_characters": 200,
+    "embedding_model": "mxbai-embed-large",
+    "candidate_retrieval": "dense top 20 plus BM25 top 20, equal-weight RRF",
+    "control_router": "explicit both-and decomposition only",
+    "final_top_k": 3,
+    "generation": "not run during screening",
+    "uses_gold_for_routing_or_selection": false
+  },
+  "challenger": {
+    "router": [
+      "multiple explicit corpus document aliases",
+      "generic multi-document requests",
+      "repeated question words",
+      "explicit both-and requests"
+    ],
+    "selection": "joint maximum reciprocal-rank assignment of one unique page per evidence need, then full-question RRF fill",
+    "source_routing": "source-scoped dense and BM25 retrieval for multi-document requests"
+  },
+  "control_results": {
+    "retrieval": {
+      "hit_at_3": 0.9615384615384616,
+      "recall_at_3": 0.8846153846153846,
+      "mrr_at_3": 0.7371794871794872
+    },
+    "by_question_type": {
+      "direct": {
+        "hit_at_3": 1.0,
+        "recall_at_3": 1.0,
+        "mrr_at_3": 0.8333333333333333
+      },
+      "multi_chunk": {
+        "hit_at_3": 0.75,
+        "recall_at_3": 0.375,
+        "mrr_at_3": 0.4583333333333333
+      },
+      "ocr_direct": {
+        "hit_at_3": 1.0,
+        "recall_at_3": 1.0,
+        "mrr_at_3": 0.75
+      },
+      "ocr_multi_chunk": {
+        "hit_at_3": 1.0,
+        "recall_at_3": 0.5,
+        "mrr_at_3": 0.5
+      },
+      "ocr_paraphrase": {
+        "hit_at_3": 1.0,
+        "recall_at_3": 1.0,
+        "mrr_at_3": 0.3333333333333333
+      },
+      "paraphrase": {
+        "hit_at_3": 1.0,
+        "recall_at_3": 1.0,
+        "mrr_at_3": 0.8666666666666666
+      }
+    },
+    "routed_answerable_subset": {
+      "hit_at_3": 1.0,
+      "recall_at_3": 0.5,
+      "mrr_at_3": 0.5
+    },
+    "routing": {
+      "route_counts_all_questions": {
+        "explicit_both_and": 2,
+        "single_information_need": 28
+      },
+      "selection_changes_vs_control": 0
+    }
+  },
+  "challenger_results": {
+    "retrieval": {
+      "hit_at_3": 0.9615384615384616,
+      "recall_at_3": 0.8846153846153846,
+      "mrr_at_3": 0.717948717948718
+    },
+    "by_question_type": {
+      "direct": {
+        "hit_at_3": 1.0,
+        "recall_at_3": 1.0,
+        "mrr_at_3": 0.8333333333333333
+      },
+      "multi_chunk": {
+        "hit_at_3": 0.75,
+        "recall_at_3": 0.375,
+        "mrr_at_3": 0.3333333333333333
+      },
+      "ocr_direct": {
+        "hit_at_3": 1.0,
+        "recall_at_3": 1.0,
+        "mrr_at_3": 0.75
+      },
+      "ocr_multi_chunk": {
+        "hit_at_3": 1.0,
+        "recall_at_3": 0.5,
+        "mrr_at_3": 0.5
+      },
+      "ocr_paraphrase": {
+        "hit_at_3": 1.0,
+        "recall_at_3": 1.0,
+        "mrr_at_3": 0.3333333333333333
+      },
+      "paraphrase": {
+        "hit_at_3": 1.0,
+        "recall_at_3": 1.0,
+        "mrr_at_3": 0.8666666666666666
+      }
+    },
+    "routed_answerable_subset": {
+      "hit_at_3": 0.8,
+      "recall_at_3": 0.4,
+      "mrr_at_3": 0.36666666666666664
+    },
+    "routing": {
+      "route_counts_all_questions": {
+        "explicit_both_and": 1,
+        "generic_multi_document_request": 1,
+        "multiple_explicit_document_aliases": 1,
+        "repeated_question_word": 2,
+        "single_information_need": 25
+      },
+      "selection_changes_vs_control": 4
+    }
+  },
+  "promotion_criteria": {
+    "hit_at_3_not_below_control": true,
+    "recall_at_3_above_control": false,
+    "multi_chunk_recall_at_least_0_50": false,
+    "ocr_multi_chunk_not_below_control": true
+  },
+  "decision": "do_not_promote; audit routed questions before revising",
+  "files": {
+    "control_retrieval": "rag-evaluation-starter\\results\\adaptive_evidence_coverage_sweep\\frozen_control_retrieval.jsonl",
+    "challenger_retrieval": "rag-evaluation-starter\\results\\adaptive_evidence_coverage_sweep\\adaptive_coverage_retrieval.jsonl"
+  }
+}

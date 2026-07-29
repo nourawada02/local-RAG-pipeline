@@ -1,0 +1,61 @@
+{
+  "experiment_id": "selective_visual_description_retrieval",
+  "control": "frozen selective-OCR 1000/200 balanced-hybrid with explicit both-and decomposition",
+  "independent_variable": "one vision-description anchor for explicitly visual queries",
+  "figure_detection": "native caption regex: line starts with Fig. N.",
+  "detected_figure_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "detected_figure_pages": [
+    {
+      "source": "nist_ai_rmf_1_0.pdf",
+      "page": 10,
+      "figure_numbers": [
+        1
+      ]
+    },
+    {
+      "source": "nist_ai_rmf_1_0.pdf",
+      "page": 15,
+      "figure_numbers": [
+        2
+      ]
+    },
+    {
+      "source": "nist_ai_rmf_1_0.pdf",
+      "page": 16,
+      "figure_numbers": [
+        3
+      ]
+    },
+    {
+      "source": "nist_ai_rmf_1_0.pdf",
+      "page": 17,
+      "figure_numbers": [
+        4
+      ]
+    },
+    {
+      "source": "nist_ai_rmf_1_0.pdf",
+      "page": 25,
+      "figure_numbers": [
+        5
+      ]
+    }
+  ],
+  "vision_model": "qwen3.5:2b",
+  "vision_render_dpi": 180,
+  "vision_temperature": 0.0,
+  "vision_num_ctx": 4096,
+  "vision_num_predict": 700,
+  "embedding_model": "mxbai-embed-large",
+  "visual_collection": "multimodal_visual_descriptions",
+  "visual_chunks": 5,
+  "final_context_pages": 3,
+  "answer_generation": false,
+  "gold_used_after_selection_only": true
+}

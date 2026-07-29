@@ -1,0 +1,52 @@
+{
+  "config": {
+    "name": "control_1000_200",
+    "chunk_size_characters": 1000,
+    "chunk_overlap_characters": 200,
+    "chunk_count": 469,
+    "average_chunk_characters": 817.1130063965885
+  },
+  "retrieval": {
+    "hit_at_3": 0.9615384615384616,
+    "recall_at_3": 0.8846153846153846,
+    "mrr_at_3": 0.7307692307692307
+  },
+  "by_question_type": {
+    "direct": {
+      "hit_at_3": 1.0,
+      "recall_at_3": 1.0,
+      "mrr_at_3": 0.8333333333333333
+    },
+    "multi_chunk": {
+      "hit_at_3": 0.75,
+      "recall_at_3": 0.375,
+      "mrr_at_3": 0.4583333333333333
+    },
+    "ocr_direct": {
+      "hit_at_3": 1.0,
+      "recall_at_3": 1.0,
+      "mrr_at_3": 0.75
+    },
+    "ocr_multi_chunk": {
+      "hit_at_3": 1.0,
+      "recall_at_3": 0.5,
+      "mrr_at_3": 0.3333333333333333
+    },
+    "ocr_paraphrase": {
+      "hit_at_3": 1.0,
+      "recall_at_3": 1.0,
+      "mrr_at_3": 0.3333333333333333
+    },
+    "paraphrase": {
+      "hit_at_3": 1.0,
+      "recall_at_3": 1.0,
+      "mrr_at_3": 0.8666666666666666
+    }
+  },
+  "latency": {
+    "median_ms": 157.31749997939914,
+    "p95_ms": 356.06950501387405
+  },
+  "index_build_ms": 147709.76609998615,
+  "answer_generation_performed": false
+}

@@ -1,0 +1,237 @@
+{
+  "experiment": "Part 2 frozen candidate-pool headroom audit",
+  "purpose": "Determine whether gold evidence missed by the final top-3 selection is already present deeper in the unchanged candidate pools.",
+  "controls": {
+    "ocr": "frozen selective-OCR index",
+    "chunk_size_characters": 1000,
+    "chunk_overlap_characters": 200,
+    "embedding_model": "mxbai-embed-large",
+    "candidate_retrieval": "dense top 20 plus BM25 top 20, equal-weight RRF",
+    "query_policy": "full question plus the frozen explicit both-and decomposition only",
+    "control_final_top_k": 3,
+    "generation": "not run",
+    "uses_gold_for_query_retrieval_ranking_or_selection": false,
+    "gold_usage": "post-retrieval diagnostic scoring only"
+  },
+  "candidate_pool_definition": "Top unique physical pages per frozen query after chunk-level RRF; the highest-ranked chunk represents each page.",
+  "cutoffs": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "control_retrieval": {
+    "hit_at_3": 0.9615384615384616,
+    "mrr_at_3": 0.7307692307692307,
+    "recall_at_3": 0.8846153846153846
+  },
+  "candidate_availability": {
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "recall_at_3": 0.8846153846153846,
+    "recall_at_5": 0.9230769230769231
+  },
+  "by_question_type": {
+    "direct": {
+      "control_retrieval": {
+        "hit_at_3": 1.0,
+        "mrr_at_3": 0.8333333333333333,
+        "recall_at_3": 1.0
+      },
+      "candidate_availability": {
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_3": 0.9090909090909091,
+        "recall_at_5": 1.0
+      }
+    },
+    "multi_chunk": {
+      "control_retrieval": {
+        "hit_at_3": 0.75,
+        "mrr_at_3": 0.4583333333333333,
+        "recall_at_3": 0.375
+      },
+      "candidate_availability": {
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_3": 0.75,
+        "recall_at_5": 0.75
+      }
+    },
+    "ocr_direct": {
+      "control_retrieval": {
+        "hit_at_3": 1.0,
+        "mrr_at_3": 0.75,
+        "recall_at_3": 1.0
+      },
+      "candidate_availability": {
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_3": 0.75,
+        "recall_at_5": 0.75
+      }
+    },
+    "ocr_multi_chunk": {
+      "control_retrieval": {
+        "hit_at_3": 1.0,
+        "mrr_at_3": 0.3333333333333333,
+        "recall_at_3": 0.5
+      },
+      "candidate_availability": {
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0
+      }
+    },
+    "ocr_paraphrase": {
+      "control_retrieval": {
+        "hit_at_3": 1.0,
+        "mrr_at_3": 0.3333333333333333,
+        "recall_at_3": 1.0
+      },
+      "candidate_availability": {
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0
+      }
+    },
+    "paraphrase": {
+      "control_retrieval": {
+        "hit_at_3": 1.0,
+        "mrr_at_3": 0.8666666666666666,
+        "recall_at_3": 1.0
+      },
+      "candidate_availability": {
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0
+      }
+    }
+  },
+  "headroom": {
+    "gold_units_missing_from_control_top_3": 6,
+    "missing_units_found_in_top_20": 6,
+    "missing_units_absent_from_top_20": 0,
+    "recoverable_fraction": 1.0,
+    "rerankable_misses": [
+      {
+        "id": "q009",
+        "question_type": "multi_chunk",
+        "doc_id": "nist_ai_rmf_1_0",
+        "page": 25,
+        "diagnosis": "retrieved_below_final_cutoff",
+        "best_candidate_match": {
+          "page_rank": 3,
+          "fused_chunk_rank": 3,
+          "query_index": 0,
+          "query_role": "full_question",
+          "query": "How does the general AI RMF Core relate to the Generative AI Profile?",
+          "chunk": 291,
+          "hybrid_rrf_score": 0.03076923076923077,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        }
+      },
+      {
+        "id": "q010",
+        "question_type": "multi_chunk",
+        "doc_id": "nist_ai_rmf_1_0",
+        "page": 13,
+        "diagnosis": "retrieved_below_final_cutoff",
+        "best_candidate_match": {
+          "page_rank": 7,
+          "fused_chunk_rank": 7,
+          "query_index": 0,
+          "query_role": "full_question",
+          "query": "After an organization treats an AI risk, what must it still document and what response choices can it make for high-priority risks?",
+          "chunk": 253,
+          "hybrid_rrf_score": 0.015625,
+          "dense_rank": 4,
+          "bm25_rank": null
+        }
+      },
+      {
+        "id": "q010",
+        "question_type": "multi_chunk",
+        "doc_id": "nist_ai_rmf_1_0",
+        "page": 37,
+        "diagnosis": "retrieved_below_final_cutoff",
+        "best_candidate_match": {
+          "page_rank": 10,
+          "fused_chunk_rank": 12,
+          "query_index": 0,
+          "query_role": "full_question",
+          "query": "After an organization treats an AI risk, what must it still document and what response choices can it make for high-priority risks?",
+          "chunk": 329,
+          "hybrid_rrf_score": 0.015151515151515152,
+          "dense_rank": null,
+          "bm25_rank": 6
+        }
+      },
+      {
+        "id": "q019",
+        "question_type": "multi_chunk",
+        "doc_id": "nist_ai_600_1",
+        "page": 24,
+        "diagnosis": "retrieved_below_final_cutoff",
+        "best_candidate_match": {
+          "page_rank": 3,
+          "fused_chunk_rank": 4,
+          "query_index": 1,
+          "query_role": "frozen_subquery",
+          "query": "What should an organization document in contracts with third-party GAI providers?",
+          "chunk": 81,
+          "hybrid_rrf_score": 0.030309988518943745,
+          "dense_rank": 5,
+          "bm25_rank": 7
+        }
+      },
+      {
+        "id": "q020",
+        "question_type": "multi_chunk",
+        "doc_id": "nist_ai_600_1",
+        "page": 47,
+        "diagnosis": "retrieved_below_final_cutoff",
+        "best_candidate_match": {
+          "page_rank": 3,
+          "fused_chunk_rank": 4,
+          "query_index": 0,
+          "query_role": "full_question",
+          "query": "How do the two documents connect explainability with ongoing management of generative AI systems?",
+          "chunk": 154,
+          "hybrid_rrf_score": 0.028991596638655463,
+          "dense_rank": 10,
+          "bm25_rank": 8
+        }
+      },
+      {
+        "id": "q026",
+        "question_type": "ocr_multi_chunk",
+        "doc_id": "nist_sp_800_218a_scan",
+        "page": 20,
+        "diagnosis": "retrieved_below_final_cutoff",
+        "best_candidate_match": {
+          "page_rank": 3,
+          "fused_chunk_rank": 3,
+          "query_index": 1,
+          "query_role": "frozen_subquery",
+          "query": "How should teams protect model artifacts?",
+          "chunk": 425,
+          "hybrid_rrf_score": 0.029273504273504274,
+          "dense_rank": 5,
+          "bm25_rank": 12
+        }
+      }
+    ],
+    "candidate_absent_misses": []
+  },
+  "recommended_next_experiment": "evidence_aware_reranking",
+  "recommendation": "All top-3 misses already exist in the frozen candidate pools; test evidence-aware reranking before query rewriting.",
+  "files": {
+    "question_level_audit": "rag-evaluation-starter\\results\\candidate_headroom_audit\\candidate_headroom_by_question.jsonl",
+    "summary": "rag-evaluation-starter\\results\\candidate_headroom_audit\\candidate_headroom_summary.json"
+  }
+}

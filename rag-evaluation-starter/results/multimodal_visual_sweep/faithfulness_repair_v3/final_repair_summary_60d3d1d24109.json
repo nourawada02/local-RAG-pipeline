@@ -1,0 +1,448 @@
+{
+  "experiment_id": "multimodal_final_faithfulness_repair",
+  "description_fingerprint": "331cd71ced932bcb57ba8fb8e54a2b463ae3ad32635a0a253931836b09fc1d4c",
+  "generation_fingerprint": "60d3d1d24109031f409ce2ec2f4a91320175cad06cec54777be7bff23195703f",
+  "generation_contract_version": "structured-source-gated-v3",
+  "structured_figures": [
+    2,
+    3,
+    5
+  ],
+  "control_reused_from": "rag-evaluation-starter\\results\\multimodal_visual_sweep\\multimodal_paired_generation_state.jsonl",
+  "control": {
+    "counts": {
+      "total": 12,
+      "answerable": 10,
+      "unanswerable": 2
+    },
+    "retrieval": {
+      "hit@3": 0.8,
+      "recall@3": 0.8,
+      "mrr@3": 0.7333333333333333
+    },
+    "answer": {
+      "exact_match": 0.0,
+      "token_f1": 0.09161960436348453,
+      "required_fact_recall": 0.125
+    },
+    "citations": {
+      "precision": 0.2,
+      "recall": 0.2,
+      "f1": 0.2
+    },
+    "abstention": {
+      "accuracy_all_questions": 0.4166666666666667,
+      "unanswerable_accuracy": 1.0
+    },
+    "latency": {
+      "retrieval": {
+        "median_ms": 2816.239,
+        "p95_ms": 3396.5776499999997
+      },
+      "generation": {
+        "median_ms": 12500.496,
+        "p95_ms": 25562.569749999995
+      },
+      "total": {
+        "median_ms": 15250.0605,
+        "p95_ms": 28550.349299999994
+      }
+    },
+    "human_optional": {
+      "correctness_mean_0_to_2": null,
+      "faithfulness_mean_0_to_2": null
+    },
+    "by_question_type": {
+      "visual_direct": {
+        "fact_recall": 0.0,
+        "abstention_accuracy": 0.0
+      },
+      "visual_relationship": {
+        "fact_recall": 0.17857142857142858,
+        "abstention_accuracy": 0.42857142857142855
+      },
+      "visual_unanswerable": {
+        "abstention_accuracy": 1.0
+      }
+    }
+  },
+  "challenger": {
+    "counts": {
+      "total": 12,
+      "answerable": 10,
+      "unanswerable": 2
+    },
+    "retrieval": {
+      "hit@3": 1.0,
+      "recall@3": 1.0,
+      "mrr@3": 1.0
+    },
+    "answer": {
+      "exact_match": 0.0,
+      "token_f1": 0.748012418867682,
+      "required_fact_recall": 0.8666666666666666
+    },
+    "citations": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "abstention": {
+      "accuracy_all_questions": 1.0,
+      "unanswerable_accuracy": 1.0
+    },
+    "latency": {
+      "retrieval": {
+        "median_ms": 1.6084999999999998,
+        "p95_ms": 10.559499999999998
+      },
+      "generation": {
+        "median_ms": 20331.342,
+        "p95_ms": 72463.90204999999
+      },
+      "total": {
+        "median_ms": 20338.5985,
+        "p95_ms": 72464.4542
+      }
+    },
+    "human_optional": {
+      "correctness_mean_0_to_2": null,
+      "faithfulness_mean_0_to_2": null
+    },
+    "by_question_type": {
+      "visual_direct": {
+        "fact_recall": 0.7777777777777778,
+        "abstention_accuracy": 1.0
+      },
+      "visual_relationship": {
+        "fact_recall": 0.9047619047619048,
+        "abstention_accuracy": 1.0
+      },
+      "visual_unanswerable": {
+        "abstention_accuracy": 1.0
+      }
+    }
+  },
+  "question_level": [
+    {
+      "id": "v001",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 0.3333333333333333,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v002",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v003",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": true,
+      "challenger_answerable": true,
+      "control_citation_correct": true,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v004",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v005",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v006",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.25,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": true,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v007",
+      "answerable": true,
+      "result": "same",
+      "control_fact_recall": 1.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": true,
+      "challenger_answerable": true,
+      "control_citation_correct": true,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v008",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v009",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 1.0,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v010",
+      "answerable": true,
+      "result": "improved",
+      "control_fact_recall": 0.0,
+      "challenger_fact_recall": 0.3333333333333333,
+      "control_answerable": false,
+      "challenger_answerable": true,
+      "control_citation_correct": false,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v011",
+      "answerable": false,
+      "result": "same",
+      "control_fact_recall": null,
+      "challenger_fact_recall": null,
+      "control_answerable": false,
+      "challenger_answerable": false,
+      "control_citation_correct": true,
+      "challenger_citation_correct": true
+    },
+    {
+      "id": "v012",
+      "answerable": false,
+      "result": "same",
+      "control_fact_recall": null,
+      "challenger_fact_recall": null,
+      "control_answerable": false,
+      "challenger_answerable": false,
+      "control_citation_correct": true,
+      "challenger_citation_correct": true
+    }
+  ],
+  "structured_source_gates": [
+    {
+      "id": "v001",
+      "passed": true,
+      "gate": "not a Figure 2/3/5 structured-source question"
+    },
+    {
+      "id": "v002",
+      "passed": true,
+      "gate": "not a Figure 2/3/5 structured-source question"
+    },
+    {
+      "id": "v003",
+      "passed": true,
+      "gate": "accepted against retrieved structured visual source"
+    },
+    {
+      "id": "v004",
+      "passed": true,
+      "gate": "accepted against retrieved structured visual source"
+    },
+    {
+      "id": "v005",
+      "passed": true,
+      "gate": "accepted against retrieved structured visual source"
+    },
+    {
+      "id": "v006",
+      "passed": true,
+      "gate": "accepted against retrieved structured visual source"
+    },
+    {
+      "id": "v007",
+      "passed": true,
+      "gate": "not a Figure 2/3/5 structured-source question"
+    },
+    {
+      "id": "v008",
+      "passed": true,
+      "gate": "not a Figure 2/3/5 structured-source question"
+    },
+    {
+      "id": "v009",
+      "passed": true,
+      "gate": "accepted against retrieved structured visual source"
+    },
+    {
+      "id": "v010",
+      "passed": true,
+      "gate": "accepted against retrieved structured visual source"
+    },
+    {
+      "id": "v011",
+      "passed": true,
+      "gate": "not a Figure 2/3/5 structured-source question"
+    },
+    {
+      "id": "v012",
+      "passed": true,
+      "gate": "not a Figure 2/3/5 structured-source question"
+    }
+  ],
+  "rendered_text_gates": [
+    {
+      "id": "v001",
+      "passed": true,
+      "gate": "no extra rendered-text relationship gate"
+    },
+    {
+      "id": "v002",
+      "passed": true,
+      "gate": "no extra rendered-text relationship gate"
+    },
+    {
+      "id": "v003",
+      "passed": true,
+      "gate": "center separated from exactly four dimensions"
+    },
+    {
+      "id": "v004",
+      "passed": true,
+      "gate": "no extra rendered-text relationship gate"
+    },
+    {
+      "id": "v005",
+      "passed": true,
+      "gate": "no extra rendered-text relationship gate"
+    },
+    {
+      "id": "v006",
+      "passed": true,
+      "gate": "TEVV phrases mapped to their source stages"
+    },
+    {
+      "id": "v007",
+      "passed": true,
+      "gate": "no extra rendered-text relationship gate"
+    },
+    {
+      "id": "v008",
+      "passed": true,
+      "gate": "no extra rendered-text relationship gate"
+    },
+    {
+      "id": "v009",
+      "passed": true,
+      "gate": "GOVERN central; three distinct surrounding functions"
+    },
+    {
+      "id": "v010",
+      "passed": true,
+      "gate": "MAP left; MEASURE right; MANAGE below GOVERN"
+    },
+    {
+      "id": "v011",
+      "passed": true,
+      "gate": "no extra rendered-text relationship gate"
+    },
+    {
+      "id": "v012",
+      "passed": true,
+      "gate": "no extra rendered-text relationship gate"
+    }
+  ],
+  "citation_gates": [
+    {
+      "id": "v001",
+      "passed": true
+    },
+    {
+      "id": "v002",
+      "passed": true
+    },
+    {
+      "id": "v003",
+      "passed": true
+    },
+    {
+      "id": "v004",
+      "passed": true
+    },
+    {
+      "id": "v005",
+      "passed": true
+    },
+    {
+      "id": "v006",
+      "passed": true
+    },
+    {
+      "id": "v007",
+      "passed": true
+    },
+    {
+      "id": "v008",
+      "passed": true
+    },
+    {
+      "id": "v009",
+      "passed": true
+    },
+    {
+      "id": "v010",
+      "passed": true
+    },
+    {
+      "id": "v011",
+      "passed": true
+    },
+    {
+      "id": "v012",
+      "passed": true
+    }
+  ],
+  "all_structured_source_gates_passed": true,
+  "all_rendered_text_gates_passed": true,
+  "all_citations_passed": true,
+  "correct_visual_anchors": 10,
+  "answerable_questions": 10,
+  "improvements": 9,
+  "regressions": 0,
+  "answerability_regressions": 0,
+  "generation_calls": 12,
+  "generation_attempts": 18,
+  "mean_generation_ms": 30382.487666666668,
+  "automated_gate_passed": true,
+  "human_audit_required": true,
+  "decision": "PASS FINAL AUTOMATED GATES; HUMAN AUDIT REQUIRED"
+}
