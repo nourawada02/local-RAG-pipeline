@@ -1,0 +1,10 @@
+experiment_id,chunk_size_characters,chunk_overlap_characters,embedding_model,retriever,candidate_k,selector,context_k,hit_at_k,recall_at_k,mrr_at_k,required_fact_recall,citation_f1,unanswerable_accuracy,total_p95_ms,decision
+baseline_native,1000,200,mxbai-embed-large,dense,3,top-3,3,0.6538,0.5962,0.5705,0.5147,0.5192,0.5000,37420.78,rejected_missing_scanned_text
+selective_ocr_dense,1000,200,mxbai-embed-large,dense,3,top-3,3,0.8077,0.7500,0.6859,0.6626,0.6667,1.0000,37614.63,promoted
+selective_ocr_dense_top5,1000,200,mxbai-embed-large,dense,5,top-5,5,0.8846,0.8269,0.7051,0.6998,0.7103,0.7500,71655.72,rejected_latency_and_abstention
+ocr_hybrid_rrf_top3,1000,200,mxbai-embed-large,dense_plus_bm25,20+20,rrf,3,0.8846,0.8269,0.8269,0.6890,0.7244,1.0000,44062.69,repaired_for_page_redundancy
+ocr_balanced_hybrid_top3,1000,200,mxbai-embed-large,dense_plus_bm25,20+20,dense_bm25_rrf_distinct_pages,3,0.9615,0.8846,0.7372,0.6757,0.7038,1.0000,34072.61,promoted
+ocr_decomposed_balanced_hybrid_top3,1000,200,mxbai-embed-large,dense_plus_bm25,20+20,deterministic_decomposition_then_balanced,3,0.9615,0.8846,0.7372,0.6889,0.7064,0.7500,36884.51,production_with_documented_abstention_regression
+ocr_prf_decomposed_hybrid_top3,1000,200,mxbai-embed-large,dense_plus_bm25_prf,20+20,prf_then_decomposition,3,0.9615,0.8846,0.7308,0.6884,0.6808,1.0000,34169.32,rejected_no_material_gain
+ocr_small_chunk_decomposed_top3,500,100,mxbai-embed-large,dense_plus_bm25,20+20,deterministic_decomposition_then_balanced,3,0.9615,0.9038,0.8141,0.5937,0.7551,0.7500,33723.68,rejected_answer_fact_regression
+
